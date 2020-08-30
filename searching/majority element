@@ -1,0 +1,17 @@
+vector <int> findPairs(int arr[], int n) 
+{
+    set<int>s;
+    vector<int>v;
+    for(int i=0;i<n;i++)
+    {
+        if(s.find(arr[i])!=s.end() or s.find(-1*arr[i])!=s.end())
+        {
+            int g=abs(0-arr[i]);
+            v.push_back(-1*g);
+            v.push_back(g);
+        }
+        s.insert(abs(0-arr[i]));
+    }
+    return v;
+    // code here
+}
