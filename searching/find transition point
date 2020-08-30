@@ -1,0 +1,12 @@
+int transitionPoint(int a[],int n)
+{
+    if(binary_search(a,a+n,1))
+    {
+        return (lower_bound(a,a+n,1)-a);
+    }
+    else
+    {
+        return -1;
+    }
+// Your code goes here
+}
