@@ -1,0 +1,23 @@
+int findExtra(int a[],int b[],int n)
+{
+    int s=0;
+    int e=n-2;
+    int idx=n-1;
+    
+    while(s<=e)
+    {
+        int mid=s+(e-s)/2;
+        if(a[mid]==b[mid])
+        {
+            s=mid+1;
+        }
+        else
+        {
+            idx=mid;
+            e=mid-1;
+        }
+    }
+    
+    return idx;
+   //add code here.
+}
