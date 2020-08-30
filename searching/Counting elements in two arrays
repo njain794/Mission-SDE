@@ -1,0 +1,40 @@
+int get(int arr[],int n,int k)
+{
+    int start=0;
+    int end=n-1;
+    int res=-1;
+    while(start<=end)
+    {
+        int mid=start+(end-start)/2;
+        
+        if(arr[mid]<=k)
+        {
+            res=max(mid,res);
+            start=mid+1;
+        }
+        else 
+        {
+            end=mid-1;
+        }
+    }
+    if(res!=-1)
+    {
+        return res+1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+vector<int> countEleLessThanOrEqual(int arr1[], int arr2[], 
+                             int m, int n)
+{
+    sort(arr2,arr2+n);
+    vector<int>v;
+    for(int i=0;i<m;i++)
+    {
+        int d=get(arr2,n,arr1[i]);
+        v.push_back(d);
+    }
+    return v;
+}
