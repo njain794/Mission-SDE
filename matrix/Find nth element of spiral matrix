@@ -1,0 +1,64 @@
+int findK(int a[MAX][MAX], int n, int m, int k)
+{
+    int top=0;
+    int down=n-1;
+    int left=0;
+    int right=m-1;
+    int dir=0;
+    
+    int d=0;
+    while(top<=down and left<=right)
+    {
+        if(dir==0)
+        {
+            for(int i=left;i<=right;i++)
+            {
+                d++;
+                if(d==k)
+                {
+                    return a[top][i];
+                }
+            }
+            top++;
+        }
+        else if(dir==1)
+        {
+            for(int i=top;i<=down;i++)
+            {
+                d++;
+                if(d==k)
+                {
+                    return a[i][right];
+                }
+            }
+            right--;
+        }
+        else if(dir==2)
+        {
+            for(int i=right;i>=left;i--)
+            {
+                d++;
+                if(d==k)
+                {
+                    return a[down][i];
+                }
+            }
+            down--;
+        }
+        else if(dir==3)
+        {
+            for(int i=down;i>=top;i--)
+            {
+                d++;
+                if(d==k)
+                {
+                    return a[i][left];
+                }
+            }
+            left++;
+        }
+        dir=(dir+1)%4;
+    }
+    return 0;
+//Your code here
+}
