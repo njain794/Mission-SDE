@@ -1,0 +1,56 @@
+
+class Solution
+{   
+public:     
+    vector<int> boundaryTraversal(vector<vector<int> > mat, int n, int m) 
+    {
+        int top=0;
+        int down=n-1;
+        int left=0;
+        int right=m-1;
+        vector<int>v;
+        
+        if(n>1 and m>1)
+        {
+        for(int i=left;i<=right;i++)
+        {
+            v.push_back(mat[top][i]);
+        }
+        top++;
+        
+        for(int i=top;i<=down;i++)
+        {
+            v.push_back(mat[i][right]);
+        }
+        right--;
+        
+        for(int i=right;i>=left;i--)
+        {
+            v.push_back(mat[down][i]);
+        }
+        down--;
+        
+        for(int i=down;i>=top;i--)
+        {
+            v.push_back(mat[i][left]);
+        }
+        left++;
+        }
+        else if(m>1)
+        {
+            for(int i=left;i<=right;i++)
+            {
+                v.push_back(mat[top][i]);
+            }
+        }
+        else 
+        {
+           for(int i=0;i<n;i++)
+            {
+                v.push_back(mat[i][left]);
+            }
+        }
+        return v;
+        // code here
+    }
+};
