@@ -1,0 +1,35 @@
+int partition (int arr[], int low, int high)
+{
+    int fix=arr[low];
+    int count=0;
+    for(int i=low+1;i<=high;i++)
+    {
+        if(arr[i]<=fix)
+        {
+            count++;
+        }
+    }
+    
+    swap(arr[low],arr[low+count]);
+    int s=low;
+    int d=high;
+    
+    while(s<d)
+    {
+        if(arr[s]<=arr[low+count])
+        {
+            s++;
+        }
+        else if(arr[d]>arr[low+count])
+        {
+            d--;
+        }
+        else
+        {
+            swap(arr[s],arr[d]);
+            s++;
+            d--;
+        }
+    }
+    return (low+count);
+   // Your code here
