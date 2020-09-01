@@ -1,0 +1,21 @@
+int thirdLargest(int a[], int n)
+{
+    priority_queue<int,vector<int>,greater<int>>pq;
+    for(int i=0;i<n;i++)
+    {
+        pq.push(a[i]);
+        if(pq.size()>3)
+        {
+            pq.pop();
+        }
+        //pq.push(a[i]);
+    }
+    if(n<3)
+    {
+        return -1;
+    }
+    else
+    {
+        return pq.top();
+    } //Your code here
+}
