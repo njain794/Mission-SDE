@@ -1,0 +1,22 @@
+void printMat(int a[MAX][MAX],int row,int col)
+{
+    //string res="";
+    unordered_set<string>st;
+    for(int i=0;i<row;i++)
+    {
+        string res="";
+        for(int j=0;j<col;j++)
+        {
+            res=res+to_string(a[i][j])+" ";
+        }
+        //st.insert(res);
+        if(st.find(res)==st.end())
+        {
+            st.insert(res);
+            cout<<res<<"$";
+        }
+        //res.clear();
+    }
+    return;
+//Your code here
+}
