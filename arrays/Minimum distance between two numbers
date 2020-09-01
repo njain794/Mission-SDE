@@ -1,0 +1,29 @@
+int minDist(int a[], int n, int x, int y) 
+{
+    int a1=-1;
+    int a2=-1;
+    int res=INT_MAX;
+    for(int i=0;i<n;i++)
+    {
+        if(a[i]==x)
+        {
+            a1=i;
+        }
+        if(a[i]==y)
+        {
+            a2=i;
+        }
+        if(a1!=-1 and a2!=-1)
+        {
+            res=min(res,abs(a1-a2));
+        }
+    }
+    if(res==INT_MAX)
+    {
+        return -1;
+    }
+    else
+    {
+        return res;   
+    }
+}
