@@ -1,0 +1,28 @@
+int convertFive(int n)
+{
+    //int no=0;
+    string res="";
+    while(n!=0)
+    {
+        int d=n%10;
+        n=n/10;
+        if(d==0)
+        {
+            d=5;
+        }
+        res+=to_string(d);
+    }
+    reverse(res.begin(),res.end());
+    return atoi(res.c_str());
+    /*string s=to_string(n);
+    char a='5';
+    for(int i=0;i<s.length();i++)
+    {
+        if(s[i]==(0-'0'))
+        {
+            s[i]=a;
+        }
+    }
+    return atoi(s.c_str());*/
+//Your code here
+}
