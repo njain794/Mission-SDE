@@ -1,0 +1,47 @@
+Node* segregate(Node *head) 
+{
+    if(head==NULL)
+    {
+        return head;
+    }
+    Node *temp=head;
+    Node *tempo=head;
+    int a0=0;
+    int a1=0;
+    int a2=0;
+    while(temp!=NULL)
+    {
+        if(temp->data==0)
+        {
+            a0++;
+        }
+        else if(temp->data==1)
+        {
+            a1++;
+        }
+        else
+        {
+            a2++;
+        }
+        temp=temp->next;
+    }
+    while(a0>0)
+    {
+        tempo->data=0;
+        a0--;
+        tempo=tempo->next;
+    }
+    while(a1>0)
+    {
+        tempo->data=1;
+        a1--;
+        tempo=tempo->next;
+    }
+    while(a2>0)
+    {
+        tempo->data=2;
+        a2--;
+        tempo=tempo->next;
+    }
+    return head;
+}
