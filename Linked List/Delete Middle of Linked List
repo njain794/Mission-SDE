@@ -1,0 +1,49 @@
+
+
+/* Link list Node:
+
+struct Node
+{
+    int data;
+    struct Node* next;
+
+    Node(int x){
+        data = x;
+        next = NULL;
+    }
+};
+
+*/
+
+// Deletes middle of linked list and returns head of the modified list
+Node* deleteMid(Node* head)
+{
+    if(head==NULL)
+    {
+        return NULL;
+    }
+    Node *slow=head;
+    Node *fast=head;
+    while(fast!=NULL and fast->next!=NULL)
+    {
+        fast=fast->next->next;
+        slow=slow->next;
+    }
+    Node *del=slow;
+    
+    if(head==del)
+    {
+        head=del->next;
+    }
+    else
+    {
+        Node *temp=head;
+        while(temp->next!=del)
+        {
+            temp=temp->next;
+        }
+        temp->next=del->next;
+    }
+    delete del;
+    return head;
+}
