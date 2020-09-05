@@ -1,0 +1,19 @@
+void subs(char str[],string out)
+{
+    if(str[0]=='\0')
+    {
+        if(out[out.size()-1]!=' ')
+        {
+           cout<<out;
+           cout<<"$";
+        }
+        return;
+    }
+    subs(str+1,out+str[0]);
+    subs(str+1,out+str[0]+" ");
+}
+void  printSpace(char str[])
+{
+    string out="";
+    subs(str,out);
+}
