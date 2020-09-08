@@ -1,0 +1,75 @@
+Node *mid(Node *head)
+{
+    Node *slow=head;
+    Node *fast=head->next;
+    while(fast!=NULL and fast->next!=NULL)
+    {
+        fast=fast->next->next;
+        slow=slow->next;
+    }
+    return slow;
+}
+Node* merge(Node* head1, Node* head2)  
+{  
+    if(head1==NULL and head2==NULL)
+    {
+        return head1;
+    }
+    Node *emp=new Node(0);
+    Node *temp=emp;
+    Node *h1=head1;
+    Node *h2=head2;
+    while(h1!=NULL || h2!=NULL)
+    {
+        if(h1!=NULL and h2!=NULL)
+        {
+            if(h1->data<=h2->data)
+            {
+                temp->next=new Node(h1->data);
+                h1=h1->next;
+            }
+            else
+            {
+                temp->next=new Node(h2->data);
+                h2=h2->next;
+            }
+            temp=temp->next;
+        }
+        else if(h1==NULL)
+        {
+            while(h2!=NULL)
+            {
+                temp->next=new Node(h2->data);
+                temp=temp->next;
+                h2=h2->next;
+            }
+        }
+        else if(h2==NULL)
+        {
+            while(h1!=NULL)
+            {
+                temp->next=new Node(h1->data);
+                temp=temp->next;
+                h1=h1->next;
+            }
+        }
+    }
+    return (emp->next);
+}  
+
+Node* mergeSort(Node* head) 
+{
+    if(head==NULL || head->next==NULL)
+    {
+        return head;
+    }
+    Node *m=mid(head);
+    Node *a=head;
+    Node *b=m->next;
+    m->next=NULL;
+    a=mergeSort(a);
+    b=mergeSort(b);
+    Node *c=merge(a,b);
+    return c;
+    // your code here
+}
