@@ -1,0 +1,25 @@
+int getNthFromLast(Node *head, int n)
+{
+    if(head==NULL)
+    {
+        return -1;
+    }
+    Node *slow=head;
+    Node *fast=head;
+    int c=0;
+    while(c<n)
+    {
+        if(fast==NULL)
+        {
+            return -1;
+        }
+        fast=fast->next;
+        c++;
+    }
+    while(fast!=NULL)
+    {
+        slow=slow->next;
+        fast=fast->next;
+    }
+    return (slow->data);
+}
