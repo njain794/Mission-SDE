@@ -1,0 +1,30 @@
+int countPairs(struct Node* head1, struct Node* head2, int x) 
+{
+    if(head1==NULL || head2==NULL)
+    {
+        return 0;
+    }
+    Node *h1=head1;
+    Node *h2=head2;
+    unordered_set<int>s;
+    while(h1!=NULL)
+    {
+        //if(s.find(h1->data)==s.end())
+        //{
+            s.insert(h1->data);
+        //}
+        h1=h1->next;
+    }
+    int count=0;
+    while(h2!=NULL)
+    {
+        int d=(x-(h2->data));
+        if(s.find(d)!=s.end())
+        {
+            count++;
+        }
+        h2=h2->next;
+    }
+    return count;
+    // Code here
+}
