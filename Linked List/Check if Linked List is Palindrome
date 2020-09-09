@@ -1,0 +1,39 @@
+Node *rev(Node *head)
+{
+    if(head==NULL || head->next==NULL)
+    {
+        return head;
+    }
+    Node *small=rev(head->next);
+    Node *c=head;
+    c->next->next=c;
+    c->next=NULL;
+    return small;
+}
+bool isPalindrome(Node *head)
+{
+    if(head==NULL || head->next==NULL)
+    {
+        return 1;
+    }
+    Node *small=head;
+    Node *fast=head;
+    while(fast!=NULL and fast->next!=NULL)
+    {
+        small=small->next;
+        fast=fast->next->next;
+    }
+    Node *temp=head;
+    Node *smal=rev(small);
+    while(smal!=NULL)
+    {
+        if(temp->data!=smal->data)
+        {
+            return 0;
+        }
+        temp=temp->next;
+        smal=smal->next;
+    }
+    return 1;
+    //Your code here
+}
