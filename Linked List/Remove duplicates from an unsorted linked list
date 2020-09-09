@@ -1,0 +1,23 @@
+Node * removeDuplicates( Node *head) 
+{
+    if(head==NULL)
+    {
+        return head;
+    }
+    set<int>s;
+    Node *temp=head;
+    Node *emp=new Node(0);
+    Node *mp=emp;
+    while(temp!=NULL)
+    {
+        if(s.find(temp->data)==s.end())
+        {
+            mp->next=new Node(temp->data);
+            mp=mp->next;
+            s.insert(temp->data);
+        }
+        temp=temp->next;
+    }
+    return emp->next;
+ // your code goes here
+}
