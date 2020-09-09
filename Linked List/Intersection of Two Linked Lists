@@ -1,0 +1,37 @@
+Node* findIntersection(Node* head1, Node* head2)
+{
+    if(head1==NULL and head2==NULL)
+    {
+        return head1;
+    }
+    if(head1==NULL)
+    {
+        return head2;
+    }
+    if(head2==NULL)
+    {
+        return head1;
+    }
+    Node *h1=head1;
+    Node *h2=head2;
+    unordered_set<int>st;
+    while(h2!=NULL)
+    {
+        st.insert(h2->data);
+        h2=h2->next;
+    }
+    Node *ndo=new Node(0);
+    Node *nd=ndo;
+    while(h1!=NULL)
+    {
+        if(st.find(h1->data)!=st.end())
+        {
+            nd->next=new Node(h1->data);
+            nd=nd->next;
+        }
+        h1=h1->next;
+    }
+    return (ndo->next);
+    // code here
+    // return the head of intersection list
+}
