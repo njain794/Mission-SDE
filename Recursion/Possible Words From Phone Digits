@@ -1,0 +1,62 @@
+string getstr(int n)
+{
+    if(n==2)
+    {
+        return "abc";
+    }
+    if(n==3)
+    {
+        return "def";
+    }
+    if(n==4)
+    {
+        return "ghi";
+    }
+    if(n==5)
+    {
+        return "jkl";
+    }
+    if(n==6)
+    {
+        return "mno";
+    }
+    if(n==7)
+    {
+        return "pqrs";
+    }
+    if(n==8)
+    {
+        return "tuv";
+    }
+    if(n==9)
+    {
+        return "wxyz";
+    }
+    else
+    {
+        return "";
+    }
+}
+void solve(int a[],int n,string res,vector<string>&op)
+{
+    if(n<=0)
+    {
+        op.push_back(res);
+        return;
+    }
+    //solve(a+1,n-1,res,op);
+    string option=getstr(a[n-1]);
+    for(int i=0;i<option.size();i++)
+    {
+        solve(a,n-1,option[i]+res,op);
+    }
+}
+vector <string> possibleWords(int a[],int n)
+{
+    vector<string>op;
+    string res="";
+    solve(a,n,res,op);
+    sort(op.begin(),op.end());
+    return op;
+    //Your code here
+}
