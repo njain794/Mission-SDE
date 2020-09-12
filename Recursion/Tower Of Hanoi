@@ -1,0 +1,22 @@
+void hanoi(int n,int frm,int to,int aux,long long &mov)
+{
+    if(n==0)
+    {
+        return;
+    }
+    hanoi(n-1,frm,aux,to,mov);
+    cout<<"move disk "<<n<<" from rod "<<frm<<" to rod "<<to<<"\n";
+    mov++;
+    hanoi(n-1,aux,to,frm,mov);
+}
+long long toh(int n, int from, int to, int aux) 
+{
+    if(n==0)
+    {
+        return 0;
+    }
+    long long int moves=0;
+    hanoi(n,from,to,aux,moves);
+    return moves;
+    // Your code here
+}
