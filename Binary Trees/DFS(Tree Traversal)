@@ -1,0 +1,22 @@
+void print(node *root)
+{
+    if(root==NULL)
+    {
+        return;
+    }
+
+    //preorder
+    cout<<root->data<<" ";
+    print(root->left);
+    print(root->right);
+
+    //inorder
+    print(root->left);
+    cout<<root->data<<" ";
+    print(root->right);
+
+    //postorder
+    print(root->left);
+    print(root->right);
+    cout<<root->data<<" ";
+}
