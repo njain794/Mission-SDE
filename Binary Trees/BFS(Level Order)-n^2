@@ -1,0 +1,38 @@
+int height(node *root)
+{
+    if(root==NULL)
+    {
+        return 0;
+    }
+    int a=height(root->left);
+    int b=height(root->right);
+    return max(a,b)+1;
+}
+void klevel(node *root,int k)
+{
+    if(root==NULL)
+    {
+        return;
+    }
+    if(k==1)
+    {
+        cout<<root->data<<" ";
+    }
+    klevel(root->left,k-1);
+    klevel(root->right,k-1);
+    return;
+}
+void bfs(node *root)
+{
+    if(root==NULL)
+    {
+        return;
+    }
+    int h=height(root);
+    for(int i=1;i<=h;i++)
+    {
+        klevel(root,i);
+        cout<<"\n";
+    }
+    return;
+}
