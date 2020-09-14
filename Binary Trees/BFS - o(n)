@@ -1,0 +1,24 @@
+void bfs1(node *root)
+{
+    if(root==NULL)
+    {
+        return;
+    }
+    queue<node *>q;
+    q.push(root);
+    while(!q.empty())
+    {
+        node *f=q.front();
+        cout<<f->data<<" ";
+        q.pop();
+        if(f->left)
+        {
+            q.push(f->left);
+        }
+        if(f->right)
+        {
+            q.push(f->right);
+        }
+    }
+    return;
+}
