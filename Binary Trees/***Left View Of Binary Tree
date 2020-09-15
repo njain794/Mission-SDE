@@ -1,0 +1,22 @@
+void solve(Node *root,int *maxlevel,int level,vector<int>&v)
+{
+    if(root==NULL)
+    {
+        return;
+    }
+    if(*maxlevel<level)
+    {
+        v.push_back(root->data);
+        *maxlevel=level;
+    }
+    solve(root->left,maxlevel,level+1,v);
+    solve(root->right,maxlevel,level+1,v);
+}
+vector<int> leftView(Node *root)
+{
+    vector<int>v;
+    int maxlevel=0;
+    solve(root,&maxlevel,1,v);
+    return v;
+   // Your code here
+}
