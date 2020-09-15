@@ -1,0 +1,35 @@
+class pairo
+{
+    public:int height;
+           bool balance;
+};
+pairo check(Node *root)
+{
+    pairo p;
+    if(root==NULL)
+    {
+        p.height=0;
+        p.balance=1;
+        return p;
+    }
+    pairo left=check(root->left);
+    pairo right=check(root->right);
+
+    p.height=max(left.height,right.height)+1;
+    if(abs(left.height-right.height)<=1 and left.balance and right.balance)
+    {
+        p.balance=1;
+    }
+    else
+    {
+        p.balance=0;
+    }
+    return p;
+}
+
+bool isBalanced(Node *root)
+{
+    pairo p=check(root);
+    return p.balance;
+    //  Your Code here
+}
