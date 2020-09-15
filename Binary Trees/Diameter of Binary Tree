@@ -1,0 +1,28 @@
+class pairo
+{
+    public: int height;
+            int diameter;
+};
+pairo solve(Node *root)
+{
+    pairo p;
+    if(root==NULL)
+    {
+        p.height=0;
+        p.diameter=0;
+        return p;
+    }
+    
+    pairo left=solve(root->left);
+    pairo right=solve(root->right);
+    
+    p.height=max(left.height,right.height)+1;
+    p.diameter=max(left.height+right.height,max(left.diameter,right.diameter));
+    return p;
+}
+int diameter(Node* node) 
+{
+    pairo p=solve(node);
+    return p.diameter+1;
+    // Your code here
+}
