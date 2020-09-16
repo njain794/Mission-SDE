@@ -1,0 +1,24 @@
+int solve(Node *root)
+{
+    if(!root)
+    {
+        return 0;
+    }
+    if(!root->left and !root->right)
+    {
+        int val=root->data;
+        root->data=0;
+        return val;
+    }
+    int ls=solve(root->left);
+    int rs=solve(root->right);
+    
+    int temp=root->data+ls+rs;
+    root->data=ls+rs;
+    return temp;
+}
+void toSumTree(Node *node)
+{
+    solve(node);
+    // Your code here
+}
