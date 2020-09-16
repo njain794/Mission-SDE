@@ -1,0 +1,52 @@
+bool isidentical(Node *r1,Node *r2)
+{
+    if(!r1 and !r2)
+    {
+        return true;
+    }
+    if(!r1 || !r2)
+    {
+        return false;
+    }
+    if(r1->data!=r2->data)
+    {
+        return false;
+    }
+    return isidentical(r1->left,r2->left) and isidentical(r1->right,r2->right);
+}
+bool isSubTree(Node* t, Node* s) 
+{
+    if(!t and !s)
+    {
+        return true;
+    }
+    if(!t || !s)
+    {
+        return false;
+    }
+    queue<Node*>q;
+    q.push(t);
+    while(!q.empty())
+    {
+        Node *f=q.front();
+        q.pop();
+        if(f->data==s->data)
+        {
+            if(isidentical(f,s))
+            {
+                return true;
+            }
+        }
+        if(f->left)
+        {
+            q.push(f->left);
+        }
+        if(f->right)
+        {
+            q.push(f->right);
+        }
+    }
+    return false;
+    // Your code here
+    // return 1 if S is subtree of T else 0
+}
