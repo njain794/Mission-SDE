@@ -1,0 +1,25 @@
+int check(Node *root,bool &flag)
+{
+    if(!root)
+    {
+        return 0;
+    }
+    if(!root->left and !root->right)
+    {
+        return root->data;
+    }
+    int ls=check(root->left,flag);
+    int rs=check(root->right,flag);
+    if(root->data!=ls+rs)
+    {
+        flag=false;
+    }
+    return root->data+ls+rs;
+}
+bool isSumTree(Node* root)
+{
+    bool flag=true;
+    int sum=check(root,flag);
+    return flag;
+     // Your code here
+}
