@@ -1,0 +1,23 @@
+void solve(Node *root,vector<vector<int>>&v,vector<int>path)
+{
+    if(!root)
+    {
+        return;
+    }
+    path.push_back(root->data);
+    if(!root->left and !root->right)
+    {
+        v.push_back(path);
+    }
+    solve(root->left,v,path);
+    solve(root->right,v,path);
+    path.pop_back();
+}
+vector<vector<int>> Paths(Node* root)
+{
+    vector<vector<int>>v;
+    vector<int>path;
+    solve(root,v,path);
+    return v;
+    // Code here
+}
