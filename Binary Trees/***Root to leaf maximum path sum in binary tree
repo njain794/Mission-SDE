@@ -1,0 +1,24 @@
+void solve(node *root,int &max,int curr_sum)
+{
+    if(root==NULL)
+    {
+        return;
+    }
+    curr_sum+=root->data;
+    if(!root->left and !root->right)
+    {
+        if(curr_sum>max)
+        {
+            max=curr_sum;
+        }
+    }
+    solve(root->left,max,curr_sum);
+    solve(root->right,max,curr_sum);
+}
+int max(node *root)
+{
+    int max=INT_MIN;
+    int curr_sum=0;
+    solve(root,max,curr_sum);
+    return max;
+}
