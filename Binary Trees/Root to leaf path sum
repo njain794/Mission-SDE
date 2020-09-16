@@ -1,0 +1,25 @@
+void solve(Node *root,int curr_sum,int sum,bool &isequal)
+{
+    if(root==NULL)
+    {
+        return;
+    }
+    curr_sum+=root->data;
+    if(!root->left and !root->right)
+    {
+        if(curr_sum==sum)
+        {
+            isequal=true;
+        }
+    }
+    solve(root->left,curr_sum,sum,isequal);
+    solve(root->right,curr_sum,sum,isequal);
+}
+bool hasPathSum(Node *node, int sum) 
+{
+    int curr_sum=0;
+    bool isequal=false;
+    solve(node,curr_sum,sum,isequal);
+    return isequal;
+    // Your code here
+}
