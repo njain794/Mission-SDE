@@ -1,0 +1,28 @@
+Node *build(int in[],int pre[],int &start,int s,int e)
+{
+    if(s>e-1)
+    {
+        return NULL;
+    }
+    Node *root=new Node(pre[start]);
+    int index=-1;
+    int j;
+    for(j=s;j<e;j++)
+    {
+        if(pre[start]==in[j])
+        {
+            index=j;
+            break;
+        }
+    }
+    start++;
+    root->left=build(in,pre,start,s,index);
+    root->right=build(in,pre,start,index+1,e);
+    return root;
+}
+Node* buildTree(int in[],int pre[], int n)
+{
+    int start=0;
+    return build(in,pre,start,0,n);
+    //add code here.
+}
