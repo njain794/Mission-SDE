@@ -1,0 +1,37 @@
+Node *lcamod(Node *root,int a,int b,bool &flag)
+{
+    if(!root)
+    {
+        return NULL;
+    }
+    if(root->data==a || root->data==b)
+    {
+        return root;
+    }
+    Node *left=lcamod(root->left,a,b,flag);
+    Node *right=lcamode(root->right,a,b,flag);
+    if(left and right)
+    {
+        flag=false;
+        return root;
+    }
+    if(!left)
+    {
+        return right;
+    }
+    if(!right)
+    {
+        return left;
+    }
+    return NULL;
+}
+bool samepath(Node *root,int a,int b)
+{
+    if(!root)
+    {
+        return 0;
+    }
+    bool flag=true;
+    Node *temp=lcamod(root,a,b,flag);
+    return flag;
+}
