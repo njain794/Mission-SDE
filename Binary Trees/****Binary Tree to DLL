@@ -1,0 +1,28 @@
+void dll(Node *root,Node *&head,Node *&tail)
+{
+    if(!root)
+    {
+        return;
+    }
+    dll(root->left,head,tail);
+    if(!head)
+    {
+        head=root;
+        tail=root;
+    }
+    else
+    {
+        root->left=tail;
+        tail->right=root;
+        tail=root;
+    }
+    dll(root->right,head,tail);
+}
+Node * bToDLL(Node *root)
+{
+    Node *head=NULL;
+    Node *tail=NULL;
+    dll(root,head,tail);
+    return head;
+    // your code here
+}
