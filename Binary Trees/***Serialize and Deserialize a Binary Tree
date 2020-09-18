@@ -1,0 +1,38 @@
+void serialize(Node *root,vector<int> &A)
+{
+    if(root==NULL)
+    {
+        A.push_back(-1);
+        return;
+    }
+    A.push_back(root->data);
+    serialize(root->left,A);
+    serialize(root->right,A);
+    //Your code here
+}
+
+/*this function deserializes
+ the serialized vector A*/
+Node *solve(vector<int>v,int &i)
+{
+    if(i>=v.size())
+    {
+        return NULL;
+    }
+    if(v[i]==-1)
+    {
+        i++;
+        return NULL;
+    }
+    Node *root=new Node(v[i]);
+    i++;
+    root->left=solve(v,i);
+    root->right=solve(v,i);
+    return root;
+}
+Node * deSerialize(vector<int> &A)
+{
+    int i=0;
+    return solve(A,i);
+   //Your code here
+}
