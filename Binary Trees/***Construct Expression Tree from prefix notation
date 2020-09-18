@@ -1,0 +1,19 @@
+Node *prefix(string s,int &curr)
+{
+    if(curr>s.size()-1)
+    {
+        return NULL;
+    }
+    Node *root=new Node(s[curr]);
+    curr++;
+    if(s[curr]=='+' or s[curr]=='-' or s[curr]=='*' or s[curr]=='/')
+    {
+        root->left=prefix(s,curr);
+        root->right=prefix(s,curr);
+        return root;
+    }
+    else
+    {
+        return root;
+    }
+}
