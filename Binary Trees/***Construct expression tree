@@ -1,0 +1,21 @@
+et *exp(char postfix[],int &curr)
+{
+    if(curr<0)
+    {
+        return NULL;
+    }
+    et *root=new et(postfix[curr--]);
+    if(root->value=='+' or root->value=='-' or root->value=='*' or root->value=='/' or root->value=='^')
+    {
+        root->right=exp(postfix,curr);
+        root->left=exp(postfix,curr);
+    }
+    return root;
+}
+et* constructTree(char postfix[])
+{
+    int n=strlen(postfix);
+    int curr=n-1;
+    return exp(postfix,curr);
+//code here
+}
