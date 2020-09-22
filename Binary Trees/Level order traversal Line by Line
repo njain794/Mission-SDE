@@ -1,0 +1,42 @@
+vector<vector<int>> levelOrder(Node* root)
+{
+    vector<vector<int>>v;
+    vector<int>path;
+    if(root==NULL)
+    {
+        return v;
+    }
+    queue<Node *>q;
+    q.push(root);
+    q.push(NULL);
+    while(!q.empty())
+    {
+        Node *f=q.front();
+        if(f==NULL)
+        {
+            //path.push_back($);
+            v.push_back(path);
+            path.clear();
+            q.pop();
+            if(!q.empty())
+            {
+                q.push(NULL);
+            }
+        }
+        else
+        {
+            path.push_back(f->data);
+            q.pop();
+            if(f->left)
+            {
+                q.push(f->left);
+            }
+            if(f->right)
+            {
+                q.push(f->right);
+            }
+        }
+    }
+    return v;
+  //Your code here
+}
