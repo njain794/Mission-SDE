@@ -1,0 +1,11 @@
+int height(Node* root)
+{
+    if(root==NULL)
+    {
+        return 0;
+    }
+    int lt=height(root->left);
+    int rt=height(root->right);
+    return max(lt,rt)+1;
+   // Your code here
+}
