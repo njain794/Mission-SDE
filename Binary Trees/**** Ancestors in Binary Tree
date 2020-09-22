@@ -1,0 +1,32 @@
+bool solve(struct Node *root,int target,vector<int>&v)
+{
+    if(root==NULL)
+    {
+        return false;
+    }
+    if(root->data==target)
+    {
+        return true;
+    }
+    //v.push_back(root->data);
+    bool lt=solve(root->left,target,v);
+    bool rt=solve(root->right,target,v);
+    if(lt or rt)
+    {
+        v.push_back(root->data);
+        return true;
+    }
+    return false;
+}
+vector<int> Ancestors(struct Node *root, int target)
+{
+    vector<int>v;
+    bool flag;
+    if(root==NULL)
+    {
+        return v;
+    }
+    bool t = solve(root,target,v);
+    return v;
+     // Code here
+}
