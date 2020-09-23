@@ -1,0 +1,27 @@
+int evalTree(node* root) 
+{
+    if(root==NULL)
+    {
+        return 0;
+    }
+    if(!root->left and !root->right)
+    {
+        return stoi(root->data);
+    }
+    int lt=evalTree(root->left);
+    int rt=evalTree(root->right);
+    if(root->data=="+")
+    {
+        return lt+rt;
+    }
+    if(root->data=="-")
+    {
+        return lt-rt;
+    }
+    if(root->data=="*")
+    {
+        return lt*rt;
+    }
+    return lt/rt;
+    // Your code here
+}
