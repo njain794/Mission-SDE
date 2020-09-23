@@ -1,0 +1,48 @@
+int maxNodeLevel(Node *root)
+{
+    if(root==NULL)
+    {
+        return 0;
+    }
+    queue<Node *>q;
+    vector<int>v;
+    int level=0;
+    int mxlevel=0;
+    int mx=0;
+    q.push(root);
+    q.push(NULL);
+    while(!q.empty())
+    {
+        Node *f=q.front();
+        if(f==NULL)
+        {
+            if(v.size()>mx)
+            {
+                mx=v.size();
+                mxlevel=level;
+            }
+            q.pop();
+            v.clear();
+            level++;
+            if(!q.empty())
+            {
+                q.push(NULL);
+            }
+        }
+        else
+        {
+            v.push_back(f->data);
+            q.pop();
+            if(f->left)
+            {
+                q.push(f->left);
+            }
+            if(f->right)
+            {
+                q.push(f->right);
+            }
+        }
+    }
+    return mxlevel;
+ // Add your code here
+}
