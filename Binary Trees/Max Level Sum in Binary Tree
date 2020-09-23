@@ -1,0 +1,52 @@
+int acc(vector<int>v)
+{
+    int sum=0;
+    for(auto x:v)
+    {
+        sum+=x;
+    }
+    return sum;
+}
+int maxLevelSum(Node* root) 
+{
+    if(root==NULL)
+    {
+        return 0;
+    }
+    queue<Node *>q;
+    vector<int>v;
+    q.push(root);
+    q.push(NULL);
+    int mx=0;
+    mx=INT_MIN;
+    while(!q.empty())
+    {
+        Node *f=q.front();
+        if(f==NULL)
+        {
+            int d=acc(v);
+            mx=max(mx,d);
+            v.clear();
+            q.pop();
+            if(!q.empty())
+            {
+                q.push(NULL);
+            }
+        }
+        else
+        {
+            v.push_back(f->data);
+            q.pop();
+            if(f->left)
+            {
+                q.push(f->left);
+            }
+            if(f->right)
+            {
+                q.push(f->right);
+            }
+        }
+    }
+    return mx;
+    // Your code here
+}
