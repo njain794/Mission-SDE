@@ -1,0 +1,62 @@
+int acc(vector<int>v)
+{
+    int sum=0;
+    for(auto x:v)
+    {
+        sum+=x;
+    }
+    return sum;
+}
+int getLevelDiff(Node *root)
+{
+    if(root==NULL)
+    {
+        return 0;
+    }
+    int os=0;
+    int es=0;
+    queue<Node*>q;
+    q.push(root);
+    q.push(NULL);
+    vector<int>v;
+    int count=0;
+    while(!q.empty())
+    {
+        Node *f=q.front();
+        if(f==NULL)
+        {
+            if(count==0)
+            {
+                os+=acc(v);
+                v.clear();
+                count=1;
+            }
+            else
+            {
+                es+=acc(v);
+                v.clear();
+                count=0;
+            }
+            q.pop();
+            if(!q.empty())
+            {
+                q.push(NULL);
+            }
+        }
+        else
+        {
+            v.push_back(f->data);
+            q.pop();
+            if(f->left)
+            {
+                q.push(f->left);
+            }
+            if(f->right)
+            {
+                q.push(f->right);
+            }
+        }
+    }
+    return (os-es);
+   //Your code here
+}
