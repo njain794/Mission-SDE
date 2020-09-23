@@ -1,0 +1,47 @@
+int rogue(Node *root,int a,int k)
+{
+    if(root==NULL)
+    {
+        return 0;
+    }
+    if(root->data==a)
+    {
+        return k;
+    }
+    int lt=rogue(root->left,a,k+1);
+    int rt=rogue(root->right,a,k+1);
+    return max(lt,rt);
+}
+bool solve(Node *root,int a,int b)
+{
+    if(root==NULL)
+    {
+        return true;
+    }
+    if(root->left and root->right and ((root->left->data==a and root->right->data==b) or (root->left->data==b and root->right->data==a)))
+    {
+        return false;
+    }
+    if(solve(root->left,a,b) and solve(root->right,a,b))
+    {
+        return true;
+    }
+}
+bool isCousins(Node *root, int a, int b)
+{
+    if(root==NULL)
+    {
+        return 0;
+    }
+    int k1=rogue(root,a,1);
+    int k2=rogue(root,b,1);
+    if(k1!=0 and k2!=0 and k1==k2)
+    {
+        return solve(root,a,b);
+    }
+    else
+    {
+        return false;
+    }
+   //add code here.
+}
