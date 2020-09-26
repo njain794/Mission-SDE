@@ -1,0 +1,20 @@
+long long minCost(long long arr[], long long n) 
+{
+    priority_queue<long long int,vector<long long>,greater<long long>>minh;
+    for(long long int i=0;i<n;i++)
+    {
+        minh.push(arr[i]);
+    }
+    long long int sum=0;
+    while(minh.size()>=2)
+    {
+        long long int a=minh.top();
+        minh.pop();
+        long long int b=minh.top();
+        minh.pop();
+        sum+=(a+b);
+        minh.push(a+b);
+    }
+    return sum;
+    // Your code here
+}
