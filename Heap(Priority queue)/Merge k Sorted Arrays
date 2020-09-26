@@ -1,0 +1,22 @@
+int *mergeKArrays(int arr[][N], int k)
+{
+    priority_queue<int,vector<int>,greater<int>>minh;
+    for(int i=0;i<k;i++)
+    {
+        for(int j=0;j<k;j++)
+        {
+            minh.push(arr[i][j]);
+        }
+    }
+    int g=(k*k);
+    int *ar=new int[g];
+    int s=0;
+    while(!minh.empty())
+    {
+      ar[s]=minh.top();
+      s++;
+      minh.pop();
+    }
+    return ar;
+//code here
+}
