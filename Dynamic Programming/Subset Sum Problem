@@ -1,0 +1,68 @@
+bool sub(int arr[],int n,int sum)
+{
+    if(sum==0 or (sum==0 and n==0))
+    {
+        return true;
+    }
+    if(n==0)
+    {
+        return false;
+    }
+    if(arr[n-1]<=sum)
+    {
+        return sub(arr,n-1,sum-arr[n-1]) or sub(arr,n-1,sum);
+    }
+    else
+    {
+        return sub(arr,n-1,sum);
+    }
+}
+bool topsub(int arr[],int n,int sum)
+{
+    if(sum==0 or (sum==0 and n==0))
+    {
+        return dp[n][sum]=true;
+    }
+    if(n==0)
+    {
+        return dp[n][sum]=false;
+    }
+    if(dp[n][sum]!=false)
+    {
+        return dp[n][sum];
+    }
+    if(arr[n-1]<=sum)
+    {
+        return dp[n][sum]=topsub(arr,n-1,sum-arr[n-1]) or topsub(arr,n-1,sum);
+    }
+    else
+    {
+        return dp[n][sum]=topsub(arr,n-1,sum);
+    }
+}
+bool botsub(int arr[],int n,int sum)
+{
+    for(int i=0;i<=n;i++)
+    {
+        for(int j=0;j<=sum;j++)
+        {
+            if(j==0 or (i==0 and j==0))
+            {
+                dp[i][j]=true;
+            }
+            else if(i==0)
+            {
+                dp[i][j]=false;
+            }
+            else if(arr[i-1]<=j)
+            {
+                dp[i][j]=dp[i-1][j-arr[i-1]] or dp[i-1][j];
+            }
+            else
+            {
+                dp[i][j]=dp[i-1][j];
+            }
+        }
+    }
+    return dp[n][sum];
+}
