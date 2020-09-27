@@ -1,0 +1,93 @@
+#include <bits/stdc++.h>
+using namespace std;
+int dp[1002][1002];
+int knap(int wt[],int val[],int w,int n)
+{
+    if(n==0)
+    {
+        return 0;
+    }
+    if(w==0)
+    {
+        return 0;
+    }
+    if(wt[n-1]<=w)
+    {
+        return max((val[n-1]+knap(wt,val,w-wt[n-1],n-1)),knap(wt,val,w,n-1));
+    }
+    else
+    {
+        return knap(wt,val,w,n-1);
+    }
+}
+int botknap(int wt[],int val[],int w,int n)
+{
+    //static int dp[n+1][w+1];
+    if(n<0)
+    {
+        return 0;
+    }
+    if(dp[n][w]!=-1)
+    {
+        return dp[n][w];
+    }
+    if(wt[n]<=w)
+    {
+        return dp[n][w]=max(val[n]+botknap(wt,val,w-wt[n],n-1),botknap(wt,val,w,n-1));
+    }
+    else
+    {
+        return dp[n][w]=botknap(wt,val,w,n-1);
+    }
+}
+/*int botknap(int wt[],int val[],int w,int n)
+{
+    /*if(n==0 or w==0)
+    {
+        return 0;
+    }
+    int dp[n+1][w+1];
+    for(int i=0;i<=n;i++)
+    {
+        for(int j=0;j<=w;j++)
+        {
+            if(i==0 or j==0)
+            {
+                dp[i][j]=0;
+            }
+            else if(wt[i-1]<=j)
+            {
+                dp[i][j]=max(val[i-1]+dp[i-1][j-wt[i-1]],dp[i-1][j]);
+            }
+            else
+            {
+                dp[i][j]=dp[i-1][j];
+            }
+        }
+    }
+    return dp[n][w];
+}*/
+int main() 
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int n,w;
+        int wt[1000],val[1000];
+        cin>>n;
+        cin>>w;
+        for(int i=0;i<n;i++)
+        {
+            cin>>val[i];
+        }
+        for(int i=0;i<n;i++)
+        {
+            cin>>wt[i];
+        }
+        memset(dp,-1,sizeof(dp)/sizeof(int));
+        cout<<botknap(wt,val,w,n-1)<<"\n";
+    }
+	//code
+	return 0;
+}
