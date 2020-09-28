@@ -1,0 +1,29 @@
+int count(int arr[],int n,int sum)
+{
+    if(sum==0 or(n==0 and sum==0))
+    {
+        return 1;
+    }
+    if(n==0)
+    {
+        return 0;
+    }
+    if(arr[n-1]<=sum)
+    {
+        return count(arr,n-1,sum-arr[n-1]) + count(arr,n-1,sum);
+    }
+    else
+    {
+        return count(arr,n-1,sum);
+    }
+}
+int diff(int arr[],int n,int d)
+{
+    int sum=0;
+    for(int i=0;i<n;i++)
+    {
+        sum+=arr[i];
+    }
+    int s1=(sum+d)/2;
+    return count(arr,n,s1);
+}
