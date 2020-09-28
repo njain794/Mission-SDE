@@ -1,0 +1,12 @@
+int target(int arr[],int n,int k)
+{
+    if(k==0 or (n==0 and k==0))
+    {
+        return 1;
+    }
+    if(n==0)
+    {
+        return 0;
+    }
+    return target(arr,n-1,k)+target(arr,n-1,k-arr[n-1])+target(arr,n-1,k+arr[n-1]);
+}
