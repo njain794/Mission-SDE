@@ -1,0 +1,78 @@
+#include <bits/stdc++.h>
+using namespace std;
+int dp[101][101];
+/*int lcs(string x,string y,int m,int n)
+{
+    if(m==0 or n==0)
+    {
+        return 0;
+    }
+    if(dp[m][n]!=-1)
+    {
+        return dp[m][n];
+    }
+    if(x[m-1]==y[n-1])
+    {
+        return dp[m][n]=1+lcs(x,y,m-1,n-1);
+    }
+    else
+    {
+        return dp[m][n]=max(lcs(x,y,m,n-1),lcs(x,y,m-1,n));
+    }
+}*/
+int lcs(string x,string y,int m,int n)
+{
+    if(m==0 or n==0)
+    {
+        return 0;
+    }
+    if(x[m-1]==y[n-1])
+    {
+        return 1+lcs(x,y,m-1,n-1);
+    }
+    else
+    {
+        return max(lcs(x,y,m-1,n),lcs(x,y,m,n-1));
+    }
+}
+/*int lcs(string s1,string s2,int n,int m)
+{
+    int dp[n+1][m+1];
+    for(int i=0;i<=n;i++)
+    {
+        for(int j=0;j<=m;j++)
+        {
+            if(i==0 or j==0)
+            {
+                dp[i][j]=0;
+            }
+            else if(s1[i-1]==s2[j-1])
+            {
+                dp[i][j]=1+dp[i-1][j-1];
+            }
+            else
+            {
+                dp[i][j]=max(dp[i][j-1],dp[i-1][j]);
+            }
+        }
+    }
+    return dp[n][m];
+}*/
+int main() 
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int m,n;
+        string x,y;
+        cin>>m>>n;
+        //cin>>n;
+        cin>>x>>y;
+        //cin>>y;
+        memset(dp,-1,sizeof(dp));///sizeof(int));
+        cout<<lcs(x,y,m,n)<<"\n";
+    }
+	//code
+	return 0;
+}
