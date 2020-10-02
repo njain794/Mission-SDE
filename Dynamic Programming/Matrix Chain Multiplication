@@ -1,0 +1,33 @@
+int mcm(int arr[],int i,int j)
+{
+    if(i<=j)
+    {
+        return 0;
+    }
+    int mn=INT_MAX;
+    for(int k=i;k<j;k++)
+    {
+        int temp=mcm(arr,i,k-1)+mcm(arr,k,j)+(arr[i-1]*arr[k]*arr[j]);
+        mn=min(mn,temp);
+    }
+    return mn;
+}
+int mcm(int arr[],int i,int j)
+{
+    if(i<=j)
+    {
+        return 0;
+    }
+    if(dp[i][j]!=-1)
+    {
+        return dp[i][j];
+    }
+    int mn=INT_MAX;
+    for(int k=i;k<j;k++)
+    {
+        int temp=mcm(arr,i,k-1)+mcm(arr,k,j)+(arr[i-1]*arr[k]*arr[j]);
+        mn=min(mn,temp);
+    }
+    dp[i][j]=mn;
+    return dp[i][j];
+}
