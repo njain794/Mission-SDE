@@ -1,0 +1,15 @@
+bool checkKthBit(int n, int k)
+{
+    int mask=(1<<k);
+    if(n&mask)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+    // Your code here
+    // It can be a one liner logic!! Think of it!!
+    
+}
