@@ -1,0 +1,21 @@
+unsigned int getFirstSetBit(int n)
+{
+    if(n==0)
+    {
+        return 0;
+    }
+    unsigned int count =1;
+    int mask=1;
+    while(n>0)
+    {
+       if(n&mask)
+       {
+           break;
+       }
+       
+       n=n>>1;
+       count++;
+    }
+    return count;
+    // Your code here
+}
