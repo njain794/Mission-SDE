@@ -1,0 +1,28 @@
+int county(int n)
+{
+    if(n==0)
+    {
+        return 0;
+    }
+    int count =1;
+    int mask=1;
+    while(n>0)
+    {
+       if(n&mask)
+       {
+           break;
+       }
+       
+       n=n>>1;
+       count++;
+    }
+    return count;
+    // Your code here
+}
+int posOfRightMostDiffBit(int m, int n)
+{
+    return county(m^n);
+    // Your code here
+    
+    
+}
