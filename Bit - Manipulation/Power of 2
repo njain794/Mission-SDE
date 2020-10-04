@@ -1,0 +1,13 @@
+bool isPowerofTwo(long long n)
+{
+    if(n & (n-1))
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+    // Your code here    
+    
+}
