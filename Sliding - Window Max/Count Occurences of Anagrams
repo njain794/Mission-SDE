@@ -1,0 +1,76 @@
+//User function template for C++
+class Solution{
+public:
+   /* bool check(string s1,string s2)
+    {
+        
+        /*sort(s1.begin(),s1.end());
+        sort(s2.begin(),s2.end());
+        if(s1==s2)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }*/
+        /*unordered_map<char,int>mp;
+        for(int i=0;i<s1.size();i++)
+        {
+            mp[s1[i]]++;
+        }
+        for(int i=0;i<s2.size();i++)
+        {
+            mp[s2[i]]--;
+        }
+        for(auto x:mp)
+        {
+            if(x.second!=0)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+	int search(string pat, string txt) 
+	{
+	    int k=pat.size();
+	    int n=txt.size();
+	    int count=0;
+	    for(int i=0;i<n-k+1;i++)
+	    {
+	        if(check(txt.substr(i,k),pat))
+	        {
+	            count++;
+	        }
+	    }
+	    return count;
+	    // code here
+	}*/
+	int search(string pat, string txt) 
+	{
+    int n = 256;
+    vector<int> t(256);
+    vector<int> p(256);
+    int c = 0;
+    for (int i = 0; i < pat.length(); i++)
+    {
+        p[pat[i]]++;
+    }
+    for (int i = 0; i < pat.length(); i++)
+    {
+        t[txt[i]]++;
+    }
+    if (t == p)
+        c++;
+    int k = 0;
+    for (int i = pat.length(); i < txt.length(); i++)
+    {
+        t[txt[i]]++;
+        t[txt[k]]--;
+        k++;
+        if (t == p)
+        c++;
+    }
+    return c;
+    }
