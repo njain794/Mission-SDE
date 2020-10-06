@@ -1,0 +1,30 @@
+void countDistinct(int a[], int k, int n)
+{
+    map<int,int>mp;
+    int j=0;
+    int count=0;
+    for(j=0;j<k;j++)
+    {
+        if(mp[a[j]]==0)
+        {
+            count++;
+        }
+        mp[a[j]]++;
+        //j++;
+    }
+    cout<<count<<" ";
+    for(j=k;j<n;j++)
+    {
+        if(mp[a[j-k]]==1)
+        {
+            count--;
+        }
+        mp[a[j-k]]--;
+        if(mp[a[j]]<=0)
+        {
+            count++;
+        }
+        mp[a[j]]++;
+        cout<<count<<" ";
+        //j++;
+    }
