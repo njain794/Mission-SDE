@@ -1,0 +1,13 @@
+const long long mod=1e9+7;
+ll dp[100000]={0};
+int solve(int n)
+{
+    dp[0]=1;
+    dp[1]=1;
+    dp[2]=2;
+    for(int i=3;i<=100000;i++)
+    {
+        dp[i]=dp[i-3]+dp[i-2]+dp[i-1];
+    }
+    return dp[n];
+}
