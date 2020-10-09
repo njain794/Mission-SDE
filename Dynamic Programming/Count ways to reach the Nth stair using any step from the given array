@@ -1,0 +1,39 @@
+/*int count(int n,int arr[],int arrlen)
+{
+    if(n==0)
+    {
+        return 1;
+    }
+    int ways=0;
+    for(int i=0;i<arrlen;i++)
+    {
+        if(n-arr[i]>=0)
+        {
+            ways+=count(n-arr[i],arr,arrlen);
+        }
+    }
+    return ways;
+}*/
+int count(int n,int arr[],int arrlen)
+{
+    if(n==0)
+    {
+        return 1;
+    }
+    int dp[n+1]={0};
+    dp[0]=1;
+    int ways=0;
+    for(int i=1;i<=n;i++)
+    {
+        ways=0;
+        for(int j=0;j<=arrlen;j++)
+        {
+            if(i-arr[j]>=0)
+            {
+                ways+=dp[i-arr[j]];
+            }
+            dp[i]=ways;
+        }
+    }
+    return dp[n];
+}
