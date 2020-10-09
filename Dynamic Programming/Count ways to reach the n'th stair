@@ -1,0 +1,27 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+ll dp[100001]={0};
+void stair()
+{
+    const long long mod = 1e9+7;
+    dp[0]=1;
+    dp[1]=1;
+    for(int i=2;i<=100000;i++)
+    {
+        dp[i]=(dp[i-1]%mod+dp[i-2]%mod)%mod;
+    }
+}
+int main() 
+{
+    long long int t;
+    cin>>t;
+    stair();
+    while(t--)
+    {
+        long long int n;
+        cin>>n;
+        cout<<dp[n]<<"\n";
+    }
+	return 0;
+}
