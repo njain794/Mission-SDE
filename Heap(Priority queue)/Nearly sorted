@@ -1,0 +1,24 @@
+vector <int> nearlySorted(int arr[], int n, int k)
+{
+    vector<int>v;
+    priority_queue<int,vector<int>,greater<int>>minh;
+    int i=0;
+    
+    while(i<n)
+    {
+       minh.push(arr[i]);
+       if(minh.size()>k)
+       {
+           v.push_back(minh.top());
+           minh.pop();
+       }
+       i++;
+    }
+    while(!minh.empty())
+    {
+        v.push_back(minh.top());
+        minh.pop();
+    }
+    return v;
+    // Your code here
+}
