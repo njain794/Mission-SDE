@@ -1,0 +1,33 @@
+void sortA1ByA2(int a1[], int n, int a2[], int m) 
+{
+    map<int,int>mp;
+    for(int i=0;i<n;i++)
+    {
+        mp[a1[i]]++;
+    }
+    int j=0;
+    for(int i=0;i<m;i++)
+    {
+        if(mp.find(a2[i])!=mp.end())
+        {
+            auto it=mp.find(a2[i]);
+            int k=it->second;
+            while(k--)
+            {
+                a1[j]=it->first;
+                j++;
+            }
+            mp.erase(a2[i]);
+        }
+    }
+    for(auto x:mp)
+    {
+        int m=x.second;
+        while(m--)
+        {
+            a1[j]=x.first;
+            j++;
+        }
+    }
+    //Your code here
+} 
