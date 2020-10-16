@@ -1,0 +1,53 @@
+// Return the root of the modified BST after deleting the node with value X
+Node *deleteNode(Node *root,  int k)
+{
+    if(root==NULL)
+    {
+        return NULL;
+    }
+    else if(root->data<k)
+    {
+        root->right = deleteNode(root->right,k);
+        return root;
+        //return deleteNode(root->right,k);
+    }
+    else if(root->data>k)
+    {
+        root->left = deleteNode(root->left,k);
+        return root;
+        //return deleteNode(root->left,k);
+    }
+    else
+    {
+        if(!root->left and !root->right)
+        {
+            delete root;
+            return NULL;
+        }
+        else if(root->left and !root->right)
+        {
+            Node *temp=root->left;
+            delete root;
+            return temp;
+        }
+        else if(root->right and !root->left)
+        {
+            Node *temp=root->right;
+            delete root;
+            return temp;
+        }
+        else
+        {
+            Node *replace=root->right;
+            while(replace->left!=NULL)
+            {
+                replace=replace->left;
+            }
+            root->data=replace->data;
+            root->right=deleteNode(root->right,replace->data);
+            return root;
+            //return deleteNode(root->right,replace->data);
+        }
+    }
+    // your code goes here
+}
