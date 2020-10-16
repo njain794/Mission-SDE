@@ -1,0 +1,35 @@
+// Returns maximum value in a given Binary Tree
+int findMax(struct node* root)
+{
+    if(root==NULL)
+    {
+        return 0;
+    }
+    return max(root->data,max(findMax(root->left),findMax(root->right)));
+// Your code goes here
+}
+
+// Returns minimum value in a given Binary Tree
+int findMin(struct node* root)
+{
+    if(root==NULL)
+    {
+        return INT_MAX;
+    }
+    int a=findMin(root->left);
+    int b=findMin(root->right);
+    if(a!=NULL and b!=NULL)
+    {
+        return min(root->data,min(a,b));
+    }
+    else if(a==NULL)
+    {
+        return min(root->data,b);
+    }
+    else if(b==NULL)
+    {
+        return min(root->data,a);
+    }
+    return root->data;
+// Your code goes here
+}
