@@ -1,0 +1,35 @@
+void fill(Node *root,vector<int>&v)
+{
+    if(root==NULL)
+    {
+        return;
+    }
+    fill(root->left,v);
+    v.push_back(root->data);
+    fill(root->right,v);
+}
+void change(Node *root,vector<int>v,int &i)
+{
+    if(root==NULL)
+    {
+        return;
+    }
+    change(root->left,v,i);
+    root->data=v[i];
+    i++;
+    change(root->right,v,i);
+}
+Node *binaryTreeToBST (Node *root)
+{
+    if(root==NULL)
+    {
+        return NULL;
+    }
+    vector<int>v;
+    fill(root,v);
+    sort(v.begin(),v.end());
+    int i=0;
+    change(root,v,i);
+    return root;
+    //Your code goes here
+}
