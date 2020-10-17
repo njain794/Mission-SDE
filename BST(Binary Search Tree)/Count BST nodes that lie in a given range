@@ -1,0 +1,26 @@
+void solve(Node *root,int l,int h,int &count)
+{
+    if(root==NULL)
+    {
+        return;
+    }
+    if(root->data>=l and root->data<=h)
+    {
+        count++;
+    }
+    if(root->data>l)
+    {
+        solve(root->left,l,h,count);
+    }
+    if(root->data<h)
+    {
+        solve(root->right,l,h,count);
+    }
+}
+int getCountOfNode(Node *root, int l, int h)
+{
+    int count=0;
+    solve(root,l,h,count);
+    return count;
+  // your code goes here   
+}
