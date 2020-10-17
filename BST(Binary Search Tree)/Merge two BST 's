@@ -1,0 +1,19 @@
+void inorder(Node *root,vector<int>&v)
+{
+    if(root==NULL)
+    {
+        return;
+    }
+    inorder(root->left,v);
+    v.push_back(root->data);
+    inorder(root->right,v);
+}
+vector<int> merge(Node *root1, Node *root2)
+{
+    vector<int>v1;
+    inorder(root1,v1);
+    inorder(root2,v1);
+    sort(v1.begin(),v1.end());
+    return v1;
+   //Your code here
+}
