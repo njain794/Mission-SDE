@@ -1,0 +1,26 @@
+void solve(Node *root,int &k,int &val)
+{
+    if(root==NULL)
+    {
+        return;
+    }
+    if(k<=0)
+    {
+        return;
+    }
+    solve(root->right,k,val);
+    k--;
+    if(k==0)
+    {
+        val=root->data;
+        return;
+    }
+    solve(root->left,k,val);
+}
+int kthLargest(Node *root, int k)
+{
+    int val=-1;
+    solve(root,k,val);
+    return val;
+    //Your code here
+}
