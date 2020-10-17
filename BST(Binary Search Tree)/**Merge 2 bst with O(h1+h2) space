@@ -1,0 +1,58 @@
+void insert(Node *root,stack<Node *>&s)
+{
+    if(root==NULL)
+    {
+        return;
+    }
+    while(root!=NULL)
+    {
+        s.push(root);
+        root=root->left;
+    }
+}
+vector<int> merge(Node *root1, Node *root2)
+{
+    stack<Node *>s1;
+    stack<Node *>s2;
+    vector<int>v;
+    
+    insert(root1,s1);
+    insert(root2,s2);
+    
+    while(!s1.empty() or !s2.empty())
+    {
+        int a,b;
+        if(!s1.empty())
+        {
+            a=s1.top()->data;
+        }
+        else if(s1.empty())
+        {
+            a=INT_MAX;
+        }
+        if(!s2.empty())
+        {
+            b=s2.top()->data;
+        }
+        else if(s2.empty())
+        {
+            b=INT_MAX;
+        }
+        
+        if(a<=b)
+        {
+            v.push_back(a);
+            Node *temp=s1.top();
+            s1.pop();
+            insert(temp->right,s1);
+        }
+        else
+        {
+            v.push_back(b);
+            Node *temp=s2.top();
+            s2.pop();
+            insert(temp->right,s2);
+        }
+    }
+    return v;
+}
