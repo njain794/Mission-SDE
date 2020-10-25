@@ -1,0 +1,56 @@
+void pusho(Node *root,stack<Node *>&s,int dir)
+{
+    if(dir==1)
+    {
+        while(root)
+        {
+            s.push(root);
+            root=root->left;
+        }
+    }
+    else
+    {
+        while(root)
+        {
+            s.push(root);
+            root=root->right;
+        }
+    }
+}
+int isPairPresent(struct Node *root, int target)
+{
+    if(root==NULL)
+    {
+        return 0;
+    }
+    stack<Node *>s1;
+    stack<Node *>s2;
+    
+    pusho(root,s1,1);
+    pusho(root,s2,0);
+    
+    while(!s1.empty() and !s2.empty() and s1.top()->data < s2.top()->data)
+    {
+        int x=s1.top()->data;
+        int y=s2.top()->data;
+        
+        if(x+y==target)
+        {
+            return 1;
+        }
+        else if(x+y<target)
+        {
+            Node *temp=s1.top();
+            s1.pop();
+            pusho(temp->right,s1,1);
+        }
+        else if(x+y>target)
+        {
+            Node *kemp=s2.top();
+            s2.pop();
+            pusho(kemp->left,s2,0);
+        }
+    }
+    return 0;
+//add code here.
+}
