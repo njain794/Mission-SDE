@@ -1,0 +1,59 @@
+bool solve(Node *root,int l,int r)
+{
+    if(root==NULL)
+    {
+        return true;
+    }
+    if(root->data < l or root->data > r)
+    {
+        return false;
+    }
+    else
+    {
+        return (solve(root->left,l,root->data-1) and solve(root->right,root->data+1,r));
+    }
+} 
+/*bool solve(Node *root,int &prev)
+{
+    if(root==NULL)
+    {
+        return true;
+    }
+    bool check1=solve(root->left,prev);
+    bool check2=root->data > prev;
+    prev = root->data;
+    bool check3=solve(root->right,prev);
+    return check1 and check2 and check3;
+}*/
+bool isBST(Node* root) 
+{
+    //int l=INT_MIN;
+    //int r=INT_MAX;
+    return solve(root,INT_MIN,INT_MAX);
+    //int prev=INT_MIN;
+    //return solve(root,prev);
+    // Your code here
+}
+/*bool isBSTCheck(Node* root, int &prev) 
+{
+    if(root == NULL)
+    {
+        return true;
+    }
+    
+    int check1 = isBSTCheck(root->left, prev);
+    
+    int check2 = root->data > prev;
+    prev = root->data;
+    
+    int check3 = isBSTCheck(root->right, prev);
+    
+    return check1 && check2 && check3;
+}
+
+bool isBST(Node* root)
+{
+    int prev = INT_MIN;
+    
+    return isBSTCheck(root, prev);
+}*/
