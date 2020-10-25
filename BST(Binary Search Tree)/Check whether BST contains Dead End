@@ -1,0 +1,30 @@
+void solve(Node *root,int min,int max,bool &flag)
+{
+    if(root==NULL)
+    {
+        return;
+    }
+    if(flag==true)
+    {
+        return;
+    }
+    if(!root->left and !root->right)
+    {
+        if(min==max or max==1)
+        {
+            flag = true;
+        }
+        return;
+    }
+    solve(root->left,min,root->data-1,flag);
+    solve(root->right,root->data+1,max,flag);
+}
+bool isDeadEnd(Node *root)
+{
+    int min = INT_MIN;
+    int max = INT_MAX;
+    bool flag = false;
+    solve(root,min,max,flag);
+    return flag;
+    //Your code here
+}
