@@ -1,0 +1,20 @@
+int minDiff(Node *root, int k)
+{
+    if(!root)
+    {
+        return INT_MAX;
+    }
+    if(root->data==k)
+    {
+        return 0;
+    }
+    if(root->data>k)
+    {
+        return min(abs(root->data-k),minDiff(root->left,k));
+    }
+    if(root->data<k)
+    {
+        return min(abs(root->data-k),minDiff(root->right,k));
+    }
+    //Your code here
+}
