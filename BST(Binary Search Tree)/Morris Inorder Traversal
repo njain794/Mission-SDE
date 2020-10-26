@@ -1,0 +1,43 @@
+void solve(Node *root,vector<int>&v)
+{
+    if(root==NULL)
+    {
+        return;
+    }
+    Node *curr=root;
+    while(curr!=NULL)
+    {
+        if(!curr->left)
+        {
+            v.push_back(curr->data);
+            curr=curr->right;
+        }
+        else
+        {
+            Node *prev=curr->left;
+            while(prev->right!=NULL and prev->right!=curr)
+            {
+                prev=prev->right;
+            }
+            
+            if(!prev->right)
+            {
+                prev->right=curr;
+                curr=curr->left;
+            }
+            else
+            {
+                v.push_back(curr->data);
+                prev->right=NULL;
+                curr=curr->right;
+            }
+        }
+    }
+}
+vector<int> inOrder(Node* root)
+{
+    vector<int>v;
+    solve(root,v);
+    return v;
+  // Your code here
+}
