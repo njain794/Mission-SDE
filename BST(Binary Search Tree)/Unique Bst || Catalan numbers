@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int solve(int n,int a[])
+{
+    if(n==0 or n==1)
+    {
+        return 1;
+    }
+    if(a[n]!=-1)
+    {
+        return a[n];
+    }
+    int count=0;
+    for(int i=1;i<=n;i++)
+    {
+        count+=solve(i-1,a)*solve(n-i,a);
+    }
+    return a[n]=count;
+}
+int main() 
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int n;
+        cin>>n;
+        int a[100];
+        memset(a,-1,sizeof(a));
+        cout<<solve(n,a);
+        cout<<"\n";
+    }
+	//code
+	return 0;
+}
