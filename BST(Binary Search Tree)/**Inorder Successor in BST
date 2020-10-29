@@ -1,0 +1,31 @@
+
+// returns the inorder successor of the Node x in BST (rooted at 'root')
+void solve(Node *root,Node *x,Node *&temp,bool &flag)
+{
+    if(root==NULL)
+    {
+        return;
+    }
+    solve(root->left,x,temp,flag);
+    if(root->data==x->data)
+    {
+        flag=true;
+    }
+    else if(flag==true)
+    {
+        temp=root;
+        flag=false;
+    }
+    solve(root->right,x,temp,flag);
+}
+Node * inOrderSuccessor(Node *root, Node *x)
+{
+    if(root==NULL)
+    {
+        return root;
+    }
+    Node *temp=NULL;
+    bool flag=false;
+    solve(root,x,temp,flag);
+    return temp;
+}
