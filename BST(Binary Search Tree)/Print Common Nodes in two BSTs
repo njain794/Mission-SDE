@@ -1,0 +1,24 @@
+// return a vector containing the intersection of the two BSTs in a sorted order
+void solve(Node *r1,vector<int>&v,unordered_set<int>&s)
+{
+    if(!r1)
+    {
+        return;
+    }
+    solve(r1->left,v,s);
+    if(s.find(r1->data)!=s.end())
+    {
+        v.push_back(r1->data);
+    }
+    s.insert(r1->data);
+    solve(r1->right,v,s);
+}
+vector <int> printCommon(Node *root1, Node *root2)
+{
+    vector<int>v;
+    unordered_set<int>s;
+    solve(root1,v,s);
+    solve(root2,v,s);
+    return v;
+     //Your code here
+}
