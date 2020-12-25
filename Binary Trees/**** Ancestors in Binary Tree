@@ -1,3 +1,4 @@
+//method 1
 bool solve(struct Node *root,int target,vector<int>&v)
 {
     if(root==NULL)
@@ -18,6 +19,26 @@ bool solve(struct Node *root,int target,vector<int>&v)
     }
     return false;
 }
+//method 2
+void solve2(Node *root,int target,vector<int>&v,vector<int>path)
+{
+    if(root==NULL)
+    {
+        return;
+    }
+    if(root->data == target)
+    {
+        v.assign(path.begin(),path.end());
+        return;
+    }
+    else
+    {
+        path.push_back(root->data);
+    }
+    solve2(root->left,target,v,path);
+    solve2(root->right,target,v,path);
+    path.pop_back();
+}
 vector<int> Ancestors(struct Node *root, int target)
 {
     vector<int>v;
@@ -26,7 +47,10 @@ vector<int> Ancestors(struct Node *root, int target)
     {
         return v;
     }
-    bool t = solve(root,target,v);
+    vector<int>path;
+    solve2(root,target,v,path);
+    reverse(v.begin(),v.end());
+    //bool t = solve(root,target,v);
     return v;
      // Code here
 }
