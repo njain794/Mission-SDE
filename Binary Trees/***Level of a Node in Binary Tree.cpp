@@ -12,7 +12,7 @@ int solve(Node *root,int a,int k,bool &flag)
     }
     int lt=solve(root->left,a,k+1,flag);
     int rt=solve(root->right,a,k+1,flag);
-    return max(lt,rt);
+    return max(lt,rt); //corner case
 }
 int getLevel(struct Node *node, int target)
 {
