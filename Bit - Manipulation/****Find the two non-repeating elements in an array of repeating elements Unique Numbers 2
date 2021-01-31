@@ -1,0 +1,43 @@
+class Solution
+{
+public:
+    vector<int> singleNumber(vector<int> nums) 
+    {
+        int sum=0;
+        vector<int>v;
+        for(int i=0;i<nums.size();i++)
+        {
+            sum=sum^nums[i];
+        }
+        
+        int rsbm=(sum&-sum);
+        
+        int num1=0,num2=0;
+        
+        for(int i=0;i<nums.size();i++)
+        {
+            if((rsbm&nums[i])>0)
+            {
+                num1=num1^nums[i];
+            }
+            else
+            {
+                num2=num2^nums[i];
+            }
+        }
+        
+        if(num1<num2)
+        {
+            v.push_back(num1);
+            v.push_back(num2);
+        }
+        else
+        {
+            v.push_back(num2);
+            v.push_back(num1);
+        }
+        //v.push_back(num2);
+        return v;
+        // Code here.
+    }
+};
