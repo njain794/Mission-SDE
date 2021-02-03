@@ -48,3 +48,34 @@ int main()
 	//code
 	return 0;
 }
+
+/////////////// OR /////////////////
+
+class Solution {
+	public:
+		string FirstNonRepeating(string A)
+		{
+		    int hash[26]={0};
+		    string ans;
+		    queue<char>q;
+		    for(int i=0;i<A.size();i++)
+		    {
+		        hash[A[i]-'a']++;
+		        q.push(A[i]);
+		        while(!q.empty() and hash[q.front()-'a']>1)
+		        {
+		            q.pop();
+		        }
+		        if(q.empty())
+		        {
+		            ans+='#';
+		        }
+		        else
+		        {
+		            ans+=q.front();
+		        }
+		    }
+		    return ans;
+		    // Code here
+		}	
+};
