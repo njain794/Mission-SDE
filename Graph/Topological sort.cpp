@@ -1,3 +1,55 @@
+
+////////////////////// BFS SOLUTION ///////////////////////
+
+class Solution{
+	public:
+	vector<int> topoSort(int v, vector<int> adj[]) 
+	{
+        vector<int>in(v,0);
+        vector<int>ans;
+        
+        for(int i=0;i<v;i++)
+        {
+            for(auto x:adj[i])
+            {
+                in[x]++;
+            }
+        }
+        
+        queue<int>q;
+        for(int i=0;i<v;i++)
+        {
+            if(in[i]==0)
+            {
+                q.push(i);
+            }
+        }
+        
+        while(!q.empty())
+        {
+            int curr=q.front();
+            q.pop();
+            ans.push_back(curr);
+            
+            for(auto x:adj[curr])
+            {
+                in[x]--;
+                if(in[x]==0)
+                {
+                    q.push(x);
+                }
+            }
+        }
+        
+        return ans;
+	    // code here
+	}
+};
+
+
+/////////////// DFS SOLUTION ////////////////
+
+
 // The Graph structure is as folows
 
 /*  Function which sorts the graph vertices in topological form
