@@ -31,3 +31,43 @@ int countTriplets(struct Node* head, int x)
     return count;
     // code here.
 } 
+
+//////// OR //////////////
+
+int countTriplets(struct Node* head, int x) 
+{ 
+    if(head==NULL)
+    {
+        return 0;
+    }
+    unordered_set<int>st;
+    Node* temp=head;
+    Node* kemp=head;
+    int count=0;
+    
+    while(kemp->next!=NULL)
+    {
+        st.insert(kemp->data);
+        kemp=kemp->next;
+    }
+    
+    while(temp->next->next)//->next!=NULL)
+    {
+        int a=temp->data;
+        Node* ptr=temp->next;
+        while(ptr)//->next->next!=NULL)
+        {
+            int b=ptr->data;
+            int d=x-(a+b);
+            if(st.find(d)!=st.end() and d<a and d<b)
+            {
+                count++;   
+            }
+            ptr=ptr->next;
+        }
+        temp=temp->next;
+    }
+    
+    return count;
+    // code here.
+} 
