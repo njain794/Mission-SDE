@@ -1,22 +1,20 @@
 class Solution {
 public:
 
-    bool dfs(vector<int>adj[],int start,vector<int>&col,int n,int cr)
+    bool dfs(int src,vector<int>adj[],vector<int>&vis,int col)
     {
-        bool flag=true;
-        col[start]=cr;
+        vis[src]=col;
         
-        for(auto x:adj[start])
+        for(auto x:adj[src])
         {
-            if(col[x]==-1)
+            if(vis[x]==-1)
             {
-                flag=dfs(adj,x,col,n,1-cr);
-                if(!flag)
+                if(!dfs(x,adj,vis,3-col))
                 {
                     return false;
                 }
             }
-            if(col[x]==col[start])
+            else if(vis[x]==vis[src])
             {
                 return false;
             }
@@ -24,23 +22,19 @@ public:
         return true;
     }
 
-	bool isBipartite(int n, vector<int>adj[])
+	bool isBipartite(int v, vector<int>adj[])
 	{
-	    vector<int>col;
-	    for(int i=0;i<n;i++)
-	    {
-	        col.push_back(-1);
-	    }
+	    vector<int>vis(v,-1);
 	    
-	    for(int i=0;i<n;i++)
+	    for(int i=0;i<v;i++)
 	    {
-	        if(col[i]==-1)
-	        {
-	            if(!dfs(adj,i,col,n,6))
-	            {
-	                return false;
-	            }
-	        }
+	       if(vis[i]==-1)
+	       {
+	           if(!dfs(i,adj,vis,1))
+	           {
+	               return false;
+	           }
+	       }
 	    }
 	    return true;
 	    // Code here
