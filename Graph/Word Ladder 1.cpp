@@ -2,62 +2,64 @@ https://practice.geeksforgeeks.org/viewSol.php?subId=1a3918c0e2743066e874dd07f18
 
 class Solution {
 public:
-    int wordLadderLength(string start, string target, vector<string>& wordlist) 
+    int ladderLength(string beginWord, string endWord, vector<string>& wordList) 
     {
-        queue<string> q;
-        q.push(start);
-        
         unordered_set<string>st;
-        for(auto word:wordlist)
+        bool flag=false;
+        
+        for(auto x:wordList)
         {
-            st.insert(word);
+            if(x==endWord)
+            {
+                flag=true;
+            }
+            st.insert(x);
         }
         
-        if(start==target)
+        if(flag==false)
         {
             return 0;
         }
         
-        if(st.find(target)==st.end())
-        {
-            return 0;
-        }
-        
-        int steps=0;
+        queue<string>q;
+        q.push(beginWord);
+        int depth=0;
         
         while(!q.empty())
         {
-            steps++;
-            int len=q.size();
-            while(len--)
+            depth++;
+            int sz=q.size();
+            while(sz--)
             {
-                string s=q.front();
+                string curr=q.front();
                 q.pop();
                 
-                for(int i=0;i<s.size();i++)
+                for(int i=0;i<curr.size();i++)
                 {
-                    char temp=s[i];
+                    string temp=curr;
                     for(char j='a';j<='z';j++)
                     {
-                        s[i]=j;
-                        if(s==target)
-                        {
-                            return steps+1;
-                        }
-                        if(st.find(s)==st.end())
+                        temp[i]=j;
+                        if(temp==curr)
                         {
                             continue;
                         }
-                        st.erase(s);
-                        q.push(s);
+                        else if(temp==endWord)
+                        {
+                            return depth+1;
+                        }
+                        else
+                        {
+                            if(st.find(temp)!=st.end())
+                            {
+                                q.push(temp);
+                                st.erase(temp);
+                            }
+                        }
                     }
-                    s[i]=temp;
                 }
-                
-                
             }
         }
-        return 0;
-        // Code here
+        return 0;   
     }
 };
