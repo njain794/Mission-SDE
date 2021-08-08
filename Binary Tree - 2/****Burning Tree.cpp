@@ -1,3 +1,8 @@
+//////
+better sol.
+https://practice.geeksforgeeks.org/viewSol.php?subId=6767ab16e146fc83031176f4f63a4ede&pid=702131&user=namanjain41
+
+////////
 vector<int> graph[10001];
 bool vis[10001];
 
