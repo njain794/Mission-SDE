@@ -14,41 +14,38 @@ class Solution {
 public:
     int widthOfBinaryTree(TreeNode* root) 
     {
-        if(!root)
+        if(root==NULL)
         {
             return 0;
         }
         
         queue<pair<TreeNode*,ull>>q;
-        
         q.push({root,0});
-        int width=0;
+        ull width=1;
         
         while(!q.empty())
         {
-            auto x=q.front();
-            ull left = x.second;
-            ull right = 0;
-            int sz = q.size();
+            int n=q.size();
+            ull l=q.front().second;
+            ull r=q.back().second;
+            width=max(width,(r-l+1));
             
-            while(sz--)
+            while(n--)
             {
-                auto p=q.front();
+                auto f=q.front();
+                TreeNode *a=f.first;
+                ull b=f.second;
                 q.pop();
-                
-                right = p.second;
-                TreeNode* head = p.first;
-                if(head->left)
+                if(a->left)
                 {
-                    q.push({head->left,2*right +1});
+                    q.push({a->left,2*b+1});
                 }
-                if(head->right)
+                if(a->right)
                 {
-                    q.push({head->right,2*right + 2});
+                    q.push({a->right,2*b+2});
                 }
             }
-            width = max(width,int(right-left+1));
         }
-        return width;
+        return (int)width;
     }
 };
