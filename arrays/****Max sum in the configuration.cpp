@@ -20,3 +20,21 @@ int max_sum(int arr[],int n)
     return ans;
 //Your code here
 }
+**************************************
+int max_sum(int arr[],int n){
+    int sum = 0;
+    int sum2 = 0;
+    int maxsum = INT_MIN;
+    for(int j = 0; j < n; j ++){
+        sum += arr[j] * j;
+        sum2 += arr[j];
+    }
+    for(int i = 0; i < n; i++){
+        sum2 -= arr[i];
+        sum = sum - sum2;
+        sum = sum + (n-1)*arr[i];
+        maxsum = max(sum,maxsum);
+        sum2 += arr[i];
+    }
+    return maxsum;
+}
