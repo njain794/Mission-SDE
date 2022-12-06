@@ -1,3 +1,43 @@
+bool canPlace(vector<int> &arr,int n,int mid,int k)
+    {
+        int cows=1;
+        int curr=arr[0];
+        for(int i=1;i<n;i++)
+        {
+            if(abs(arr[i]-curr)>=mid)
+            {
+                curr=arr[i];
+                cows++;
+            }
+        }
+        return cows>=k;
+    }
+
+    int solve(int n, int k, vector<int> &arr) 
+    {
+        sort(arr.begin(),arr.end());
+        
+        int start = 1;
+        int end = arr[n-1]-arr[0];
+        
+        int ans=1;
+        while(start<=end)
+        {
+            int mid = start + (end-start)/2;
+            
+            if(canPlace(arr,n,mid,k))
+            {
+                ans=mid;
+                start=mid+1;
+            }
+            else
+            {
+                end=mid-1;
+            }
+        }
+        return ans;
+    }
+******************************************************************
 #include <bits/stdc++.h>
 using namespace std;
 
